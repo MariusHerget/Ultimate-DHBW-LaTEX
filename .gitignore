@@ -21,6 +21,7 @@
 # Temp Folders + Files
 /temp
 *.*~
+*~
 
 # Folders that are only needed while using it
 /Backup
