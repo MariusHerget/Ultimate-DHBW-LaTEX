@@ -1,0 +1,21 @@
+%
+% vorher in Konsole folgendes aufrufen: 
+%	makeglossaries makeglossaries dokumentation.acn && makeglossaries dokumentation.glo
+%
+
+%
+% Abkürzungen --> referenz, name, beschreibung
+% Aufruf mit \gls{...} oder Kurzform mit \acrshort{...}
+%
+
+\newacronym{DHBW}{DHBW}{Duale Hochschule Baden Württemberg}
+\newacronym{DV}{DV}{\gls{Vader}}
+
+
+%
+% Glossareintraege --> referenz, name, beschreibung
+% Aufruf mit \gls{...}
+%
+\newglossaryentry{Vader}{name={Darth Vader},plural={Darth Vaders},description={The best Lord of all time.}}
+
+\glsaddall
