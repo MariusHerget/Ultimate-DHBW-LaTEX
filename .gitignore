@@ -1,33 +1,25 @@
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
+# Generated Files
+*.aux
+*.acn
+*.glo
+*.ist
+*.lof
+*.log
+*.lot
+*.lol
+*.toc
+*.alg
+*.glg
+*.gls
+*.acr
 *.out
-*.app
-*.i*86
-*.x86_64
-*.hex
 
-# Debug files
-*.dSYM/
-*.su
+*.pdf
+
+# Temp Folders + Files
+/temp
+*.*~
+
+# Folders that are only needed while using it
+/Backup
+/output
