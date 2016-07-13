@@ -1,4 +1,5 @@
-# DHBW Ultimate
+DHBW Ultimate
+=============
 ## LaTEX Template for DHBW Stuttgart papers
 
 ## Usage with makefile
