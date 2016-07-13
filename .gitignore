@@ -13,6 +13,8 @@
 *.gls
 *.acr
 *.out
+*.bbl 
+*.blg
 
 *.pdf
 
