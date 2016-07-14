@@ -19,7 +19,7 @@ Features
 
 ## Usage with makefile
 	\make init			Initialize environment (saves first version to have a difference to the next version)
-	\make open			Opens Main .tex, all contents/.tex, literatur.bib and header.tex in gedit (ONLY LINUX YET!!!)
+	\make open			Opens Main .tex, all contents/.tex, literatur.bib and header.tex in gedit 
 	\make all			Generated PDF in /output, deletes all temporary files and opens PDF
 	\make clean			Deletes output
 	\make version			Backup your work, build PDF with differences to the last version
