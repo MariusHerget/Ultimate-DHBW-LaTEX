@@ -22,7 +22,7 @@ BACKUPNAME    = Backup/$(shell date --iso=seconds)
 LASTVERSION_D = Backup/lastVersion
 
 # Init PDF and last Version
-init: outputdir report cleanup cpSave
+init: outputdir report cleanup cpSave initOwnFramework
 
 # Build the LaTeX document.
 all: outputdir report openPDF cleanup 
@@ -45,9 +45,9 @@ cleanup:
 # Create LaTeX output directory.
 outputdir:
 	# create all dirs
-	$(shell mkdir $(OUTPUT_DIR) 2>/dev/null)
-	$(shell mkdir Backup 2>/dev/null)
-	$(shell mkdir $(LASTVERSION_D) 2>/dev/null)
+	$(shell mkdir -p $(OUTPUT_DIR) 2>/dev/null)
+	$(shell mkdir -p Backup 2>/dev/null)
+	$(shell mkdir -p $(LASTVERSION_D) 2>/dev/null)
 
 # Build Bib
 bibtex:
@@ -80,6 +80,10 @@ openPDFdifferences:
 open:
 	$(shell gedit -s $(DOCUMENT_NAME).tex content/*.tex literatur.bib header.tex & echo OPENED!) 
 # TBD opens in favourite editor
+
+# own Frameworks File
+initOwnFramework:
+	test -e ownFrameworks.tex | touch ownFrameworks.tex && echo "%% Here you can include you own Frameworks (Doesnt get pushed to GIT!)" > ownFrameworks.tex
 
 # Publish new Version
 backup:
