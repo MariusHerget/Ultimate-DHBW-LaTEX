@@ -32,4 +32,4 @@ Currently supported systems:
 
 
 
-BASED ON [DHBW-HORB's template from 2011](https://github.com/dhbw-horb/latexVorlageEnglisch/commits/master)
+BASED ON [DHBW-HORB's template from 2011](https://github.com/dhbw-horb/latexVorlageEnglisch)
