@@ -68,7 +68,6 @@
 \input{glossary}
 
 \begin{document}
-\nocite{*}
 	% Deckblatt
 	\begin{spacing}{1}
 		\input{deckblatt}
@@ -136,9 +135,8 @@
 	\cleardoublepage
 	\phantomsection \label{listoflit}
 	\addcontentsline{toc}{chapter}{Bibliography}
-	\bibliography{literatur}{}
-	\bibliographystyle{plain}
-	%\input{literatur}
+	\printbibliography
+	%\bibliographystyle{plain}
 
 	% Abkürzungsverzeichnis
 	% vorher in Konsole folgendes aufrufen: 

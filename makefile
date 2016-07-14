@@ -49,7 +49,7 @@ clean:
 
 # cleanup tempfiles
 cleanup:
-	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr *.pdf *out contents.tex
+	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr *.pdf *out contents.tex *.run.xml *.blg *.bcf *.bbl dhbw-ultimate-blx.bib
 	rm -f $(OUTPUT_DIR)/*.aux rm -f $(OUTPUT_DIR)/*.acn $(OUTPUT_DIR)/*.glo $(OUTPUT_DIR)/*.ist $(OUTPUT_DIR)/*.lof $(OUTPUT_DIR)/*.log $(OUTPUT_DIR)/*.lot $(OUTPUT_DIR)/*.lol $(OUTPUT_DIR)/*.toc $(OUTPUT_DIR)/*.alg $(OUTPUT_DIR)/*.glg $(OUTPUT_DIR)/*.gls $(OUTPUT_DIR)/*.acr $(OUTPUT_DIR)/*.gz $(OUTPUT_DIR)/*out
 	rm -r -f tmp
 	rm -f *.*~
@@ -62,10 +62,10 @@ outputdir: contents
 	$(shell mkdir -p $(LASTVERSION_D) 2>/dev/null)
 
 # Build Bib
-bibtex: contents
+bibtex: 
 	bibtex $(DOCUMENT_NAME)
 
-glos: contents
+glos: 
 	makeglossaries -q $(DOCUMENT_NAME).glo
 	makeglossaries -q $(DOCUMENT_NAME).acn
 
@@ -74,11 +74,11 @@ build: contents
 
 
 # Generate PDF output from LaTeX input files.
-report: contents
-	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
-	makeglossaries -q $(DOCUMENT_NAME).glo
-	makeglossaries -q $(DOCUMENT_NAME).acn
-	bibtex $(DOCUMENT_NAME)
+report: build glos bibtex build
+#	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
+#	makeglossaries -q $(DOCUMENT_NAME).glo
+#	makeglossaries -q $(DOCUMENT_NAME).acn
+#	bibtex $(DOCUMENT_NAME)
 	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
 	cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)
 
