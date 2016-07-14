@@ -26,7 +26,9 @@ Features
 	\make differ			Builds PDF with differences to the last version 
 	\make cleanup			Deletes all generated files (Recommended if errors occurred while \make all)
 	
-
+## Support
+Currently supported systems:
+   + Linux
 
 
 
