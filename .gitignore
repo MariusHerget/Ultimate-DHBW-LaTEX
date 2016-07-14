@@ -15,6 +15,11 @@
 *.out
 *.bbl
 *.blg
+*.run.xml
+*.blg
+*.bcf
+*.bbl
+*-blx.bib
 
 *.pdf
 
@@ -30,3 +35,4 @@
 /Backup
 /output
 /error.txt
+/contents.tex

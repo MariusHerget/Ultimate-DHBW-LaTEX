@@ -49,7 +49,7 @@ clean:
 
 # cleanup tempfiles
 cleanup:
-	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr *.pdf *out contents.tex *.run.xml *.blg *.bcf *.bbl dhbw-ultimate-blx.bib
+	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr *.pdf *out contents.tex *.run.xml *.blg *.bcf *.bbl $(DOCUMENT_NAME)-blx.bib
 	rm -f $(OUTPUT_DIR)/*.aux rm -f $(OUTPUT_DIR)/*.acn $(OUTPUT_DIR)/*.glo $(OUTPUT_DIR)/*.ist $(OUTPUT_DIR)/*.lof $(OUTPUT_DIR)/*.log $(OUTPUT_DIR)/*.lot $(OUTPUT_DIR)/*.lol $(OUTPUT_DIR)/*.toc $(OUTPUT_DIR)/*.alg $(OUTPUT_DIR)/*.glg $(OUTPUT_DIR)/*.gls $(OUTPUT_DIR)/*.acr $(OUTPUT_DIR)/*.gz $(OUTPUT_DIR)/*out
 	rm -r -f tmp
 	rm -f *.*~
