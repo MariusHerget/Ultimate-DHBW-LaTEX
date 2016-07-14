@@ -23,6 +23,9 @@
 *.*~
 *~
 
+# own Frameworks
+/ownFrameworks.tex
+
 # Folders that are only needed while using it
 /Backup
 /output
