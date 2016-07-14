@@ -2,6 +2,7 @@
 #                   DHBW ULTIMATE                     #
 #          LaTEX template for english papers          #
 #           optimized for DHBW Stuttagrt              #
+#                  computer science                   #
 #                                                     #
 #                                                     #
 # based on: github.com/dhbw-horb/latexVorlageEnglisch #
@@ -13,7 +14,7 @@
 #     Marius Herget, info@herget.design, TINF14A      #
 #######################################################
 
-####### INSERT NAME HERE #######
+####### INSERT FILE NAME HERE #######
 DOCUMENT_NAME = dhbw-ultimate
 ################################
 OUTPUT_DIR    = output
@@ -73,7 +74,7 @@ report:
 openPDF:
 	 gnome-open $(OUTPUT_DIR)/$(DOCUMENT_NAME).pdf
 openPDFdifferences:
-	 gnome-open $(OUTPUT_DIR)/differences.pdf
+	 gnome-open $(OUTPUT_DIR)/$(DOCUMENT_NAME)-differences.pdf
 
 # Opens all files in texteditor
 open:
@@ -100,13 +101,13 @@ cpSave:
 	$(shell cp -r content/*.tex $(LASTVERSION_D)/content/.)
 	# finished save
 
-differ: createDiffer openPDFdifferences
+differ: createDiffer openPDFdifferences 
 
 createDiffer:
 	# Pand old and new tex
 	$(shell mkdir tmp; cd $(LASTVERSION_D); latexpand $(DOCUMENT_NAME).tex > ../../tmp/$(DOCUMENT_NAME)-old.tex; cd ../..)
 	latexpand $(DOCUMENT_NAME).tex > tmp/$(DOCUMENT_NAME).tex
 	# Create difference file
-	latexdiff --exclude-textcmd="section,subsection,chapter,subsubsection,part" tmp/$(DOCUMENT_NAME)-old.tex tmp/$(DOCUMENT_NAME).tex >  $(OUTPUT_DIR)/differences.tex
-	pdflatex -interaction=nonstopmode $(OUTPUT_DIR)/differences.tex
-	cp differences.pdf $(OUTPUT_DIR)
+	latexdiff --exclude-textcmd="section,subsection,chapter,subsubsection,part" tmp/$(DOCUMENT_NAME)-old.tex tmp/$(DOCUMENT_NAME).tex >  $(OUTPUT_DIR)/$(DOCUMENT_NAME)-differences.tex
+	pdflatex -interaction=nonstopmode $(OUTPUT_DIR)/$(DOCUMENT_NAME)-differences.tex
+	cp $(DOCUMENT_NAME)-differences.pdf $(OUTPUT_DIR)
