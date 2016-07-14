@@ -13,7 +13,8 @@ Features
 1. Rename the _dhbw-ultimate.tex_ file into your favorite file name (this won't the document name or title of your work).
 2. Change the *DOCUMENT_NAME* variable in the **makefile** to the chosen file name (without .tex).
 3. Run **\make init**.
-4. Now you can create new files in *Content/*, edit the information in the main tex-file and start to work on your paper. 
+4. Change the Logo in the *images* to your company's logo.
+5. Now you can create new files in *Content/*, edit the information in the main tex-file and start to work on your paper. 
 
 ## Usage with makefile
 	\make init			Initialize environment (saves first version to have a difference to the next version)
