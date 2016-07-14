@@ -19,7 +19,7 @@
 *.pdf
 
 # Temp Folders + Files
-/temp
+/tmp
 *.*~
 *~
 

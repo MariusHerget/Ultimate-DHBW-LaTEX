@@ -21,7 +21,7 @@ BACKUPNAME    = Backup/$(shell date --iso=seconds)
 LASTVERSION_D = Backup/lastVersion
 
 # Init PDF and last Version
-init: outpurdir report cleanup cpSave
+init: outputdir report cleanup cpSave
 
 # Build the LaTeX document.
 all: outputdir report openPDF cleanup 
@@ -100,7 +100,9 @@ cpSave:
 	$(shell cp -r content/*.tex $(LASTVERSION_D)/content/.)
 	# finished save
 
-differ: 
+differ: createDiffer openPDFdifferences
+
+createDiffer:
 	# Pand old and new tex
 	$(shell mkdir tmp; cd $(LASTVERSION_D); latexpand $(DOCUMENT_NAME).tex > ../../tmp/$(DOCUMENT_NAME)-old.tex; cd ../..)
 	latexpand $(DOCUMENT_NAME).tex > tmp/$(DOCUMENT_NAME).tex
@@ -108,4 +110,3 @@ differ:
 	latexdiff --exclude-textcmd="section,subsection,chapter,subsubsection,part" tmp/$(DOCUMENT_NAME)-old.tex tmp/$(DOCUMENT_NAME).tex >  $(OUTPUT_DIR)/differences.tex
 	pdflatex -interaction=nonstopmode $(OUTPUT_DIR)/differences.tex
 	cp differences.pdf $(OUTPUT_DIR)
-differ: openPDFdifferences
