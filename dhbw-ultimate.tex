@@ -76,6 +76,8 @@
 	
 	\renewcommand{\thepage}{\Roman{page}}
 	\setcounter{page}{1}
+
+	% Sperrvermerk
 	
 	% Erklärung
 	\input{erklaerung}
@@ -93,6 +95,42 @@
 		\tableofcontents
 	\end{spacing}
 	\newpage
+
+	% Abkürzungsverzeichnis
+	% vorher in Konsole folgendes aufrufen: 
+	%	makeglossaries makeglossaries dokumentation.acn && makeglossaries dokumentation.glo
+	\printglossary[type=\acronymtype]
+
+	% Abbildungsverzeichnis
+	\cleardoublepage
+	\phantomsection \label{listoffig}
+	\addcontentsline{toc}{chapter}{List of figures}
+	\listoffigures
+
+	% Tabellenverzeichnis
+	\cleardoublepage
+	\phantomsection \label{listoftab}
+	\addcontentsline{toc}{chapter}{List of tables}
+	\listoftables
+
+	% Quellcodeverzeichnis
+	\cleardoublepage
+	\phantomsection \label{listoflist}
+	\addcontentsline{toc}{chapter}{Listings}
+	\lstlistoflistings
+
+	% Formelgroeßen
+	%\cleardoublepage
+	%\phantomsection \label{listofformula}
+	%\addcontentsline{toc}{chapter}{List of formula sizes}
+	%\begin{acronym}[LONGEST]
+	  % Allgemein:
+	  % \acro{KÜRZEL}[ABKÜRZUNG]{\acrounit{SI-EINHEIT}BESCHREIBUNG}
+	  % Beispiele:
+	  %\acro{A}[\ensuremath{A}]{\acrounit{\meter^2}Oberfläche}
+	  %\acro{Rth}[\ensuremath{R_\mathrm{th}}]{ \acrounit{\kelvin\per\watt}Thermischer Widerstand}
+	%\end{acronym}
+
 
 	\renewcommand{\thepage}{\arabic{page}}
 	\setcounter{page}{1}
@@ -113,35 +151,11 @@
 	\clearpage
 	\pagenumbering{roman}
 
-	% Abbildungsverzeichnis
-	\cleardoublepage
-	\phantomsection \label{listoffig}
-	\addcontentsline{toc}{chapter}{List of figures}
-	\listoffigures
-
-	%Tabellenverzeichnis
-	\cleardoublepage
-	\phantomsection \label{listoftab}
-	\addcontentsline{toc}{chapter}{List of tables}
-	\listoftables
-
-	% Quellcodeverzeichnis
-	\cleardoublepage
-	\phantomsection \label{listoflist}
-	\addcontentsline{toc}{chapter}{Listings}
-	\lstlistoflistings
-
 	% Literaturverzeichnis
 	\cleardoublepage
 	\phantomsection \label{listoflit}
 	\addcontentsline{toc}{chapter}{Bibliography}
 	\printbibliography
-	%\bibliographystyle{plain}
-
-	% Abkürzungsverzeichnis
-	% vorher in Konsole folgendes aufrufen: 
-	%	makeglossaries makeglossaries dokumentation.acn && makeglossaries dokumentation.glo
-	\printglossary[type=\acronymtype]
 
 	% Glossar
 	\printglossary[style=altlist,title=Glossary]

@@ -1,5 +1,5 @@
-\chapter{Introduction/Motivation}
-\section{Example usage of different commands}
+\chapter{Introduction/Motivation}\label{chp:introduction}
+\section{Example usage of different commands}\label{chp:introduction:examples}
 
 
  \begin{description}
@@ -9,34 +9,43 @@
 	\item[TBD with description] \textbackslash tdb[some Description] --> \tbd[some Description]
 	\item[Footnote] \textbackslash footnote\{Not guaranteed that Death Star will be safe\}--> \footnote{Not guaranteed that Death Star will be safe}
 	\item[Cites] \textbackslash cite\{deathstar\} --> \cite{deathstar}
+	\item[Indirect cites] \footfullcite[See][10--15]{pgfplots:sourceforge}
  \end{description}
  
  
-\section{PGFPlots}
+\section{PGFPlots}\label{chp:introduction:pgfexamples}
 
 All examples are from PGFPlots \cite{pgfplots:sourceforge}:
 
 Plot \textbf{$f(x) = x^2 - x +4$}:
 
+\begin{figure}[H]
 \begin{tikzpicture} 
 	\begin{axis}[ xlabel=$x$, ylabel={$f(x) = x^2 - x +4$} ] 
 	% use TeX as calculator: 
 	\addplot {x^2 - x +4}; 
 	\end{axis} 
 \end{tikzpicture}
-
+	\caption[PGFPlot 1]{PGFPlot Example 1}
+	\label{fig:pgf:example1}
+\end{figure}
 
 Data from \textbf{diagrams/test-data.csv}:
 
+\begin{figure}[H]
 \pgfplotstableread[col sep=comma]{diagrams/test-data.csv}\loadedtable
 \begin{tikzpicture} 
 	\begin{axis}[ xlabel=Cost, ylabel=Error] 		
 		\addplot[color=red,mark=x] table [x=X,y=Y]{\loadedtable};
 	 \end{axis}
 \end{tikzpicture}
+	\caption[PGFPlot 2]{PGFPlot Example 2}
+	\label{fig:pgf:example2}
+\end{figure}
 
 Data from \textbf{diagrams/test-data2.csv}:
 
+\begin{figure}[H]
 \pgfplotstableread[col sep=&]{diagrams/test-data2.csv}\loadTestData
 \begin{tikzpicture}
 	\begin{axis}[
@@ -47,5 +56,21 @@ Data from \textbf{diagrams/test-data2.csv}:
 	\addplot[scatter,only marks, scatter src=explicit symbolic] 	table[x=x, y=y, meta=label] {\loadTestData};
 	\end{axis}
 \end{tikzpicture}
+	\caption[PGFPlot 3]{PGFPlot Example 3}
+	\label{fig:pgf:example3}
+\end{figure}
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth,scale=0.6]{images/dhbw.png}
+	\caption[DHBW]{This is the beautiful logo of the DHBW.}
+	\label{fig:dhbw_logo}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{images/death-star.jpg}
+	\caption[Death Star]{This looks great! \cite{fig:deathstar}}
+	\label{fig:dhbw_logo}
+\end{figure}
+If you want to design it yourself switch to chapter \ref{chp:architecture} at page \pageref{chp:architecture}.
 

@@ -1,0 +1,30 @@
+\ifglsentryexists{A}{}%
+{%
+\gls@defglossaryentry{A}%
+{%
+name={[},%
+sort={[},%
+type={acronym},%
+first={\protect \ensuremath ([)},%
+firstplural={\protect \ensuremath  s([s)},%
+text={[},%
+plural={[s},%
+description={\ensuremath },%
+descriptionplural={\ensuremath \acrpluralsuffix },%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \ensuremath },%
+longplural={\protect \ensuremath s},%
+short={[},%
+shortplural={[s},%
+counter={page},%
+parent={},%
+%
+}%
+}%
