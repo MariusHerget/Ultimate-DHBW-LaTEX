@@ -52,18 +52,21 @@
 % Grafikenfloat
 \usepackage{float}
 
+% Grafiken innerhalb von Texten
+\usepackage{wrapfig}
+
 % Biblatex
 \usepackage[backend=bibtex,style=numeric]{biblatex}
 \bibliography{literatur.bib}
 \nocite{*}
 
 % Mathematische Textsaetze
-%\usepackage{amsmath}
-%\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
 
 % Pakete um Textteile drehen zu können, oder eine Seite Querformat anzeigen kann.
-%\usepackage{rotating}
-%\usepackage{lscape}
+\usepackage{rotating}
+\usepackage{lscape}
 
 % Farben
 \usepackage{color}
@@ -143,6 +146,7 @@
 \usepackage{tikz} % To generate the plot from csv
 \usepackage{pgfplots}
 \usepackage{pgfplotstable}
+\pgfplotsset{compat=1.9}
 
 % Aufzaehlungen
 \usepackage{enumitem}
@@ -153,8 +157,9 @@
 \date{\datum}
 
 % Abstand 2,5cm allseits
-    \usepackage[
+\usepackage[
     top = 2.5cm,
     bottom = 2.5cm,
     left = 2.5cm,
-    right = 2.50cm]{geometry}
+    right = 2.50cm
+]{geometry}
