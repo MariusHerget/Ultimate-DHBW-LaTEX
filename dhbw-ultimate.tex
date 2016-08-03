@@ -58,11 +58,21 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NEW commands for better workflow
+\newcommand{\impmark}{\strut\vadjust{\domark}}
+\newcommand{\domark}{%
+  \vbox to 0pt{
+    \kern-\dp\strutbox
+    \smash{\llap{*\kern1em}}
+    \vss
+  }%
+}
 \newcommand{\tbd}[1][null]{
 	\ifthenelse{\equal{#1}{null}}
-	{\textit{(TBD) }}
-	{\textit{(TBD: #1) }}
+	{\textit{\color{orange}\impmark(TBD) }}
+	{\textit{\color{orange}\impmark(TBD: #1) }}
 }
+
 
 \makeglossaries
 \input{glossary}
