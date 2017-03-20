@@ -1,7 +1,6 @@
 %
 % Import settings for alle plugins / TEX
 %
-
 \documentclass[%
 	pdftex,
 	a4paper,
@@ -13,10 +12,11 @@
 	footsepline,
 	plainfootsepline,
 	abstracton,     % Abstract headline
-	english,        % Translator
+	english,        % Translator																				% LANGUAGE
 	%enabledeprecatedfontcommands, % enable old commands to use fancyhdr - NOT RECOMMENDED
 %	listof=totoc
 ]{scrreprt}
+
 
 % Include full other TEX documents --> via PDF
 %\usepackage[subpreambles=true]{standalone}
@@ -42,7 +42,7 @@
 \usepackage{makeidx}
 
 % Lokalisierung (englische Sprache)
-\usepackage[english]{babel}
+\usepackage[english]{babel}																						% LANGUAGE
 
 % Anführungszeichen
 \usepackage[babel,german=quotes]{csquotes}
@@ -93,7 +93,7 @@
 	pdfcreator={pdflatex, LaTeX with KOMA-Script},
 	pdfpagemode=UseOutlines, % Beim Oeffnen Inhaltsverzeichnis anzeigen
 	pdfdisplaydoctitle=true, % Dokumenttitel statt Dateiname anzeigen.
-	pdflang=eng % Sprache des Dokuments.
+	pdflang=eng % Sprache des Dokuments.																% LANGUAGE
 ]{hyperref}
 
 % (Farb-)einstellungen für die Links im PDF

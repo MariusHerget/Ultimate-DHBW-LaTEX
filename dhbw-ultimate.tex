@@ -22,7 +22,6 @@
 \newcommand{\arbeit}{Template LaTEX}
 \newcommand{\version}{draft} % change to "final" to disable comments | "draft" shows notes/tbds/etc
 
-
 %%%% Don't touch! %%%%
 \input{.TEX/header}
 \IfFileExists{ownFrameworks.tex}{\input{ownFrameworks}}{}
@@ -107,7 +106,7 @@
 % Deckblatt
 \begin{spacing}{1}
 	\cleardoublepage
-	\input{.TEX/cover}
+	\input{.TEX/cover}																									% LANGUAGE
 	\cleardoublepage
 	\listoffixmes % todos
 \end{spacing}
@@ -118,7 +117,7 @@
 
 % Declaration
 \cleardoublepage
-\input{content/declaration}
+\input{content/declaration}																						% LANGUAGE
 \newpage
 
 % Abstract
@@ -140,16 +139,19 @@
 % Abbildungsverzeichnis
 \cleardoublepage
 \phantomsection \label{listoffig}\addcontentsline{toc}{chapter}{\listfigurename}
+																																% LANGUAGE
 \listoffigures
 
 % Tabellenverzeichnis
 \cleardoublepage
 \phantomsection \label{listoftab}\addcontentsline{toc}{chapter}{\listtablename}
+																																% LANGUAGE
 \listoftables
 
 % Quellcodeverzeichnis
 \cleardoublepage
 \phantomsection \label{listoflist}\addcontentsline{toc}{chapter}{List of \lstlistlistingname}
+																																% LANGUAGE
 \lstlistoflistings
 
 % Abkürzungsverzeichnis
@@ -190,6 +192,7 @@
 \cleardoublepage
 \phantomsection \label{listoflit}
 \addcontentsline{toc}{chapter}{Bibliography}
+															 % LANGUAGE
 \printbibliography
 
 
@@ -199,7 +202,7 @@
 {
 	\captionsetup{list=no}
 	%\addtocontents{lof}{\protect\setcounter{tocdepth}{0}} %trick to dont show appendicies in table of contents/figures/...
-				
+
 	\begin{appendices}\label{appendices}
 		\lofoot*{Appendices}
 		\cleardoublepage
