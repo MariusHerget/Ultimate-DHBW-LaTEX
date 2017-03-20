@@ -20,6 +20,7 @@ DOCUMENT_NAME = dhbw-ultimate
 OUTPUT_DIR    = output
 BACKUPNAME    = Backup/$(shell date --iso=seconds)
 LASTVERSION_D = Backup/lastVersion
+BACKUPBEAUTIFER = Backup/beautifer
 
 
 ########################################################################################
@@ -53,9 +54,10 @@ clean:
 # cleanup tempfiles
 cleanup:
 	@echo "Clean generated files"
-	@rm -f *.aux rm -f 0 *.lox *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr $(DOCUMENT_NAME).pdf *out .TEX/contents.tex .TEX/appendices.tex *.run.xml *.blg *.bcf *.bbl $(DOCUMENT_NAME)-blx.bib
+	@rm -f *.aux 0 *.lox *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr $(DOCUMENT_NAME).pdf *out .TEX/contents.tex .TEX/appendices.tex *.run.xml *.blg *.bcf *.bbl $(DOCUMENT_NAME)-blx.bib
 	@rm -f $(OUTPUT_DIR)/*.aux rm -f $(OUTPUT_DIR)/*.acn $(OUTPUT_DIR)/*.glo $(OUTPUT_DIR)/*.ist $(OUTPUT_DIR)/*.lof $(OUTPUT_DIR)/*.log $(OUTPUT_DIR)/*.lot $(OUTPUT_DIR)/*.lol $(OUTPUT_DIR)/*.toc $(OUTPUT_DIR)/*.alg $(OUTPUT_DIR)/*.glg $(OUTPUT_DIR)/*.gls $(OUTPUT_DIR)/*.acr $(OUTPUT_DIR)/*.gz $(OUTPUT_DIR)/*out
 	@rm -r -f tmp
+	@rm -r -f *.bak* content/**/*.bak0 content/*.bak0
 	@rm -f *.*~
 
 # Create LaTeX output directory.
@@ -159,7 +161,9 @@ createDiffer: contents
 
 TEXFILES= $(wildcard *.tex) $(wildcard */*.tex)
 TEXFILES:= $(filter-out $(addsuffix /%,$(OUTPUT_DIR)), $(TEXFILES))
-beautiful:
+beautiful: internalbeautiful cleanup
+
+internalbeautiful:
 	@echo "Beautifier for All tex files:"
 	@echo $(TEXFILES)
 	@$(shell mkdir -p $(BACKUPBEAUTIFER))
