@@ -37,19 +37,21 @@ LASTVERSION_D = Backup/lastVersion
 init: outputdir contents report cleanup cpSave initOwnFramework
 
 # Build the LaTeX document.
-all: outputdir contents report openPDF cleanup 
+all: outputdir contents report openPDF cleanup
+short: outputdir contents reportSHORT openPDFSHORT cleanup
 
 # Saves new Version, build differences PDF
-version: outputdir contents differ backup cleanup save 
+version: outputdir contents differ backup cleanup save
 differences: outputdir contents differ cleanup
 
 # Remove output directory.
 clean:
 	rm -rf $(OUTPUT_DIR)
+	rm -rf $(BACKUPBEAUTIFER)
 
 # cleanup tempfiles
 cleanup:
-	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr *.pdf *out contents.tex *.run.xml *.blg *.bcf *.bbl $(DOCUMENT_NAME)-blx.bib
+	rm -f *.aux rm -f *.acn *.glo *.ist *.lof *.log *.lot *.lol *.toc *.alg *.glg *.gls *.acr $(DOCUMENT_NAME).pdf *out .TEX/contents.tex .TEX/appendices.tex *.run.xml *.blg *.bcf *.bbl $(DOCUMENT_NAME)-blx.bib
 	rm -f $(OUTPUT_DIR)/*.aux rm -f $(OUTPUT_DIR)/*.acn $(OUTPUT_DIR)/*.glo $(OUTPUT_DIR)/*.ist $(OUTPUT_DIR)/*.lof $(OUTPUT_DIR)/*.log $(OUTPUT_DIR)/*.lot $(OUTPUT_DIR)/*.lol $(OUTPUT_DIR)/*.toc $(OUTPUT_DIR)/*.alg $(OUTPUT_DIR)/*.glg $(OUTPUT_DIR)/*.gls $(OUTPUT_DIR)/*.acr $(OUTPUT_DIR)/*.gz $(OUTPUT_DIR)/*out
 	rm -r -f tmp
 	rm -f *.*~
@@ -62,40 +64,55 @@ outputdir: contents
 	$(shell mkdir -p $(LASTVERSION_D) 2>/dev/null)
 
 # Build Bib
-bibtex: 
+bibtex:
 	bibtex $(DOCUMENT_NAME)
 
-glos: 
+glos:
 	makeglossaries -q $(DOCUMENT_NAME).glo
 	makeglossaries -q $(DOCUMENT_NAME).acn
 
 build: contents
-	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
+	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME)
+#> error.txt
 
 
 # Generate PDF output from LaTeX input files.
 report: build glos bibtex build
-#	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
-#	makeglossaries -q $(DOCUMENT_NAME).glo
-#	makeglossaries -q $(DOCUMENT_NAME).acn
-#	bibtex $(DOCUMENT_NAME)
-	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) > error.txt
+	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME)
+# > error.txt
+	pdflatex -interaction=nonstopmode $(DOCUMENT_NAME)
+#> error.txt
 	cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)
 
+reportSHORT: build glos bibtex build
+	cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/PREVIEW-$(DOCUMENT_NAME).pdf
+
 # Select all files from /content/
-contents: 
-	rm -f contents.tex
-	ls content/*.tex | awk '{printf "\\input{%s}\n", $$1}' > contents.tex
+contents: appendices
+	rm -f .TEX/contents.tex
+	ls content/main/*.tex | awk '{printf "\\input{%s}\n", $$1}' > .TEX/contents.tex
+
+appendices:
+	rm -f .TEX/appendices.tex
+	@if [ $(LANG=C ls -l content/appendices | cut -d ' ' -f 2) > 0 ]; \
+	then\
+		echo "Appendices recognized"; \
+		ls content/appendices/*.tex | awk '{printf "\\input{%s}\n", $$1}' > .TEX/appendices.tex; \
+	else\
+		echo "No appendices recognized in content/appendices."; \
+	fi
 
 # Opens PDF
 openPDF:
 	 gnome-open $(OUTPUT_DIR)/$(DOCUMENT_NAME).pdf
+openPDFSHORT:
+	 gnome-open $(OUTPUT_DIR)/PREVIEW-$(DOCUMENT_NAME).pdf
 openPDFdifferences:
 	 gnome-open $(OUTPUT_DIR)/$(DOCUMENT_NAME)-differences.pdf
 
 # Opens all files in texteditor
 open:
-	$(shell gedit -s $(DOCUMENT_NAME).tex content/*.tex literatur.bib header.tex & echo OPENED!) 
+	$(shell gedit -s $(DOCUMENT_NAME).tex content/*.tex literatur.bib header.tex & echo OPENED!)
 # TBD opens in favourite editor
 
 # own Frameworks File
@@ -111,7 +128,7 @@ backup: contents
 
 save: delSave cpSave
 
-delSave: 
+delSave:
 	$(shell rm -r $(LASTVERSION_D); mkdir $(LASTVERSION_D) 2>/dev/null)
 
 cpSave:
@@ -122,7 +139,7 @@ cpSave:
 	$(shell cp -r content/*.tex $(LASTVERSION_D)/content/.)
 	# finished save
 
-differ: createDiffer openPDFdifferences 
+differ: createDiffer openPDFdifferences
 
 createDiffer: contents
 	# Pand old and new tex
@@ -133,3 +150,13 @@ createDiffer: contents
 	pdflatex -interaction=nonstopmode $(OUTPUT_DIR)/$(DOCUMENT_NAME)-differences.tex
 	cp $(DOCUMENT_NAME)-differences.pdf $(OUTPUT_DIR)
 
+TEXFILES= $(wildcard *.tex) $(wildcard */*.tex)
+TEXFILES:= $(filter-out $(addsuffix /%,$(OUTPUT_DIR)), $(TEXFILES))
+beautiful:
+	echo $(TEXFILES)
+	$(shell mkdir -p $(BACKUPBEAUTIFER))
+	$(foreach texfile, $(TEXFILES), latexindent -s -w -c=$(BACKUPBEAUTIFER) $(texfile);)
+
+DEBUG=$(wildcard *.bak*) $(wildcard */*.bak*)
+debug:
+	echo $(DEBUG)

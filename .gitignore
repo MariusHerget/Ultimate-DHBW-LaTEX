@@ -35,4 +35,5 @@
 /Backup
 /output
 /error.txt
-/contents.tex
+.TEX/contents.tex
+.TEX/appendices.tex
