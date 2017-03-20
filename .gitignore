@@ -20,6 +20,7 @@
 *.bcf
 *.bbl
 *-blx.bib
+*.lox
 
 *.pdf
 
