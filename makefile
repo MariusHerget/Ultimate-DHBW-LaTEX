@@ -59,6 +59,7 @@ cleanup:
 	@rm -r -f tmp
 	@rm -r -f *.bak* content/**/*.bak0 content/*.bak0
 	@rm -f *.*~
+	@rm -f .TEX/printversion.tex
 
 # Create LaTeX output directory.
 outputdir: contents
@@ -84,12 +85,18 @@ build: contents
 
 
 # Generate PDF output from LaTeX input files.
+# make print and normal version
 report: build glos bibtex build
 	@echo "Compiling LaTEX document. (2/3)"
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
-		@echo "Compiling LaTEX document. (3/3)"
+	@echo "Compiling LaTEX document. (3/3) Print & Screen version"
+	@echo '\\renewcommand{\isPrintVersion}{true}' > .TEX/printversion.tex
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
-	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)
+	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-print.pdf
+	@rm -f .TEX/printversion.tex
+	@echo '\\renewcommand{\isPrintVersion}{false}' > .TEX/printversion.tex
+	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
+	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-screen.pdf
 
 reportSHORT: build glos bibtex build
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/PREVIEW-$(DOCUMENT_NAME).pdf

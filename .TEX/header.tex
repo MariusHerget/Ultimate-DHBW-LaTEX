@@ -97,14 +97,26 @@
 ]{hyperref}
 
 % (Farb-)einstellungen für die Links im PDF
-\hypersetup{%
-	colorlinks=false, % Aktivieren von farbigen Links im Dokument
-	linkcolor=LinkColor, % Farbe festlegen
-	citecolor=LinkColor,
-	filecolor=LinkColor,
-	menucolor=LinkColor,
-	urlcolor=LinkColor,
-	bookmarksnumbered=true % Überschriftsnummerierung im PDF Inhalt anzeigen.
+\definecolor{darkBlue}{HTML}{043562}
+\ifthenelse{\equal{\isPrintVersion}{true}}
+{ % print version
+	\hypersetup{
+		hidelinks=true,
+		colorlinks=false,
+		linktocpage=true, 						% page numbers are clickable
+		bookmarksnumbered=true 						% show heading numbering in pdf table of contents
+	}
+}{ % screen version
+	\hypersetup{
+		colorlinks=true,
+		linkcolor=darkBlue,
+		citecolor=darkBlue,
+		filecolor=darkBlue,
+		menucolor=darkBlue,
+		urlcolor=darkBlue,
+		linktocpage=true, 						% page numbers are clickable
+		bookmarksnumbered=true 						% show heading numbering in pdf table of contents
+	}
 }
 
 % Verschiedene Schriftarten

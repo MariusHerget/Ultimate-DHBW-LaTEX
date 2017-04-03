@@ -21,8 +21,12 @@
 \newcommand{\autor}{Marius Herget}
 \newcommand{\arbeit}{Template LaTEX}
 \newcommand{\version}{draft} % change to "final" to disable comments | "draft" shows notes/tbds/etc
+\newcommand{\isPrintVersion}{true}
 
 %%%% Don't touch! %%%%
+\IfFileExists{.TEX/printversion.tex}
+{\input{.TEX/printversion}}
+{}
 \input{.TEX/header}
 \IfFileExists{ownFrameworks.tex}{\input{ownFrameworks}}{}
 %%%%%%%%%%%%%%%%%%%%%%
