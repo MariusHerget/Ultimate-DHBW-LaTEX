@@ -8,7 +8,7 @@ Features
   + Render LaTEX with title page, contents, abstract, declaration, bibliography, list of Tables/Figures, acronyms and glossary
   + Version control with backup system
   + Difference PDF to last version
-  + Renders automatically a _print_ and _screen_ Version. The _screen_ version has labeled and work hyperlinks to _urls_, _refs_, etc.
+  + Renders automatically a _print_ and _screen_ Version. The _screen_ version has highlited and working hyperlinks to _urls_, _refs_, etc.
 
 ## How to start
 1. Rename the _dhbw-ultimate.tex_ file into your favorite file name (this won't the document name or title of your work).
