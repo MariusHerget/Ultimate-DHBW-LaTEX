@@ -89,14 +89,16 @@ build: contents
 report: build glos bibtex build
 	@echo "Compiling LaTEX document. (2/3)"
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
-	@echo "Compiling LaTEX document. (3/3) Print & Screen version"
+	@echo "Compiling LaTEX document. (3/3)"
 	@echo '\\renewcommand{\isPrintVersion}{true}' > .TEX/printversion.tex
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-print.pdf
 	@rm -f .TEX/printversion.tex
+	@echo "Print version completed. (3/3)"
 	@echo '\\renewcommand{\isPrintVersion}{false}' > .TEX/printversion.tex
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-screen.pdf
+	@echo "Screen version completed. (3/3)"
 
 reportSHORT: build glos bibtex build
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/PREVIEW-$(DOCUMENT_NAME).pdf
