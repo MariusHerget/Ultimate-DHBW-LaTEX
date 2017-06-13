@@ -11,7 +11,7 @@
 #   author: Tobias Dreher, Yves Fischer (2011)        #
 #                                                     #
 #                                                     #
-#     Marius Herget, info@herget.design, TINF14A      #
+#     Marius Herget, me@mariusherget.de, TINF14A      #
 #######################################################
 
 ####### INSERT FILE NAME HERE #######
@@ -90,12 +90,12 @@ report: build glos bibtex build
 	@echo "Compiling LaTEX document. (2/3)"
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
 	@echo "Compiling LaTEX document. (3/3)"
-	@echo '\\renewcommand{\isPrintVersion}{true}' > .TEX/printversion.tex
+	@echo '\renewcommand{\isPrintVersion}{true}' > .TEX/printversion.tex
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-print.pdf
 	@rm -f .TEX/printversion.tex
 	@echo "Print version completed. (3/3)"
-	@echo '\\renewcommand{\isPrintVersion}{false}' > .TEX/printversion.tex
+	@echo '\renewcommand{\isPrintVersion}{false}' > .TEX/printversion.tex
 	@pdflatex -interaction=nonstopmode $(DOCUMENT_NAME) >> error.txt
 	@cp $(DOCUMENT_NAME).pdf $(OUTPUT_DIR)/$(DOCUMENT_NAME)-screen.pdf
 	@echo "Screen version completed. (3/3)"
@@ -113,10 +113,10 @@ appendices:
 	@rm -f .TEX/appendices.tex
 	@if [ $(LANG=C ls -l content/appendices | cut -d ' ' -f 2) > 0 ]; \
 	then\
+		echo "No appendices recognized in content/appendices."; \
+	else\
 		echo "Appendices files concluded in .TEX/appendices.tex"; \
 		ls content/appendices/*.tex | awk '{printf "\\input{%s}\n", $$1}' > .TEX/appendices.tex; \
-	else\
-		echo "No appendices recognized in content/appendices."; \
 	fi
 
 # Opens PDF
