@@ -238,6 +238,24 @@
 
 \usepackage{xkvltxp}
 \usepackage[\version, layout={inline,index}, singleuser]{fixme}
+% Side characters
+\newcommand{\impmark}{\strut\vadjust{\domark}}
+\newcommand{\domark}{%
+	\vbox to 0pt{
+		\kern-\dp\strutbox
+		\smash{\llap{*\kern1em}}
+		\vss
+	}%
+}
+\newcommand{\impquest}{\strut\vadjust{\doquest}}
+\newcommand{\doquest}{%
+	\vbox to 0pt{
+		\kern-\dp\strutbox
+		\smash{\llap{?\kern2em}}
+		\vss
+	}%
+}
+% Fixme
 \fxsetup{envlayout=plain}
 \renewcommand\fixmeindexname{hello}
 \renewcommand\@fxnotekey{***a}
@@ -260,7 +278,18 @@
 	\fi}
 \@fxlayout@index
 \FXRegisterLayout{index}{\FXLayoutIndex}
-
+\renewcommand*\FXLayoutInline[3]{%
+  {
+	\ifthenelse{\equal{#1}{note}}{ % TBD
+		\@fxuseface{inline}\ignorespaces\textit{\impmark\color{orange}[TBD: #2]}
+		}{}
+	\ifthenelse{\equal{#1}{warning}}{ % TBD without describtion
+		\@fxuseface{inline}\ignorespaces\textit{\impmark\color{orange}\textbf{TBD}}
+		}{}
+	\ifthenelse{\equal{#1}{fatal}}{ % Question
+		\@fxuseface{inline}\ignorespaces\textit{\impquest\color{red}[Question: #2]}
+		}{}
+	}}
 % Appendix
 \usepackage[toc,page]{appendix}
 
