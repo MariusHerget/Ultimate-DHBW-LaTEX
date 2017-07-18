@@ -66,37 +66,19 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \rofoot*{\confidental}
 
-%% NEW commands for better workfloe
-\newcommand{\impmark}{\strut\vadjust{\domark}}
-\newcommand{\domark}{%
-	\vbox to 0pt{
-		\kern-\dp\strutbox
-		\smash{\llap{*\kern1em}}
-		\vss
-	}%
-}
-\newcommand{\impquest}{\strut\vadjust{\doquest}}
-\newcommand{\doquest}{%
-	\vbox to 0pt{
-		\kern-\dp\strutbox
-		\smash{\llap{?\kern2em}}
-		\vss
-	}%
-}
 % TBD
 \newcommand{\tbd}[1][null]{
 	\ifthenelse{\equal{#1}{null}}
-	{\fxwarning[]{\textit{\impmark\color{orange}(TBD)} }}
-	{\fxnote[]{\textit{\impmark\color{orange}#1}}}
+	{\fxwarning[]{}}
+	{\fxnote[]{#1}}
 }
 \newcommand{\todo}[1][null]{
 	\ifthenelse{\equal{#1}{null}}
-	{\fxwarning[]{\textit{\impmark\color{orange}(TBD)} }}
-	{\fxnote[]{\textit{\impmark\color{orange}#1}}}
+	{\fxwarning[]{}}
+	{\fxnote[]{#1}}
 }
 
-\newcommand{\question}[1][???]{\fxfatal[]{\impquest\color{red}#1}}
-\let\origdoublepage\cleardoublepage
+\newcommand{\question}[1][???]{\fxfatal[]{#1}}\let\origdoublepage\cleardoublepage
 \renewcommand{\cleardoublepage}{%
 	\clearpage
 	{\pagestyle{empty}\origdoublepage}%
