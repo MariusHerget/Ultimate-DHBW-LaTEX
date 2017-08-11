@@ -86,8 +86,10 @@
 \usepackage{xcolor}
 
 % PDF Einstellungen
+\ifthenelse{\equal{\version}{draft}}
+{ % print version
 \usepackage[%
-	pdftitle={\pdftitel},
+	pdftitle={\pdftitel~DRAFT~(\today)},
 	pdfauthor={\autor},
 	pdfsubject={\arbeit},
 	pdfcreator={pdflatex, LaTeX with KOMA-Script},
@@ -95,6 +97,17 @@
 	pdfdisplaydoctitle=true, % Dokumenttitel statt Dateiname anzeigen.
 	pdflang=eng % Sprache des Dokuments.																% LANGUAGE
 ]{hyperref}
+}{ % screen version
+	\usepackage[%
+		pdftitle={\pdftitel},
+		pdfauthor={\autor},
+		pdfsubject={\arbeit},
+		pdfcreator={pdflatex, LaTeX with KOMA-Script},
+		pdfpagemode=UseOutlines, % Beim Oeffnen Inhaltsverzeichnis anzeigen
+		pdfdisplaydoctitle=true, % Dokumenttitel statt Dateiname anzeigen.
+		pdflang=eng % Sprache des Dokuments.																% LANGUAGE
+	]{hyperref}
+}
 
 % (Farb-)einstellungen für die Links im PDF
 \definecolor{darkBlue}{HTML}{043562}
